@@ -8,7 +8,7 @@ const bookmarkList = (function() {
     return `
         <li class="bookmark-list-items js-bookmark-list-items" data-item-id="${item.id}" aria-label="click to expand bookmark item">
         <h3 class="list-title js-list-title">${item.title}</h3>
-        <a class="list-link js-list-link" href="${item.url}" target="_blank">${item.url}</a>
+        <a class="list-link js-list-link" href="${item.url}" target="_blank"><span class="url-bookmark">URL: </span>${item.url}</a>
         <section class="star-rating js-star-rating">
           <p class="star-number js-star-number" aria-label="${item.rating} star">Rating: ${item.rating} STARS</p>
         </section>
@@ -22,15 +22,16 @@ const bookmarkList = (function() {
   function generateCreateBookmarkView() {
     return `
         <li class="create-bookmark-view js-create-bookmark-view" aria-live="polite">
-          <h2>Create a Bookmark</h2>
+          <h2>Create a Brockmark</h2>
+          <h3>Brock makes it easier for ya!</h3>
             <form for="close-button" id="js-close-expanded" class="close-header-right js-header-right" id="close-button">
-              <button class="create-close-button js-close-button" type="submit" aria-label="click to close expanded view">Close</button>
+              <button class="create-close-button js-close-button" type="submit" aria-label="click to close expanded view">CANCEL</button>
             </form>
             <form id="js-add-bookmark">
               <label for="add-bookmark-title"></label>
-              <input class="add-bookmark add-bookmark-title js-add-bookmark-title" id="add-bookmark-title" name="title" type="text" placeholder="title" required aria-label="please enter a name for your bookmark">
+              <input class="add-bookmark add-bookmark-title js-add-bookmark-title" id="add-bookmark-title" name="title" type="text" placeholder="Add a Title" required aria-label="please enter a name for your bookmark">
               <label for="add-bookmark-link"></label>
-              <input class="add-bookmark add-bookmark-link js-add-bookmark-link" id="add-bookmark-link" name="url" type="url" aria-label="please enter a url for your bookmark"value="http://" placeholder="http://url-address.com" required>
+              <input class="add-bookmark add-bookmark-link js-add-bookmark-link" id="add-bookmark-link" name="url" type="url" aria-label="please enter a url for your bookmark" placeholder="http://url-address.com" required>
               <label for="add-bookmark-desc"></label>
               <input class="add-bookmark add-bookmark-desc js-add-bookmark-desc" id="add-bookmark-desc" name="desc" type="text" placeholder="Add a description" aria-label="please enter a long description for your bookmark"align="top">
               <div id="add-star-rating js-add-star-rating">
@@ -66,7 +67,7 @@ const bookmarkList = (function() {
       <li aria-label="click to expand bookmark"class="expand-bookmark-view js-expand-bookmark-view" data-item-id="${item.id}">
         <h2>${item.title}</h2>
         <form id="js-close-expanded" class="header-right js-header-right">
-        <p class="expanded-stars js-expanded-stars">${item.rating} STAR</p>
+        <p class="expanded-stars js-expanded-stars">${item.rating} STARS</p>
         </form>
         <p class="long-desc js-long-desc">${item.desc}</p>
         <a class="bookmark-link js-bookmark-link" href="${item.url}" target="_blank">${item.url}</a>
@@ -74,14 +75,13 @@ const bookmarkList = (function() {
             <a class="bookmark-link js-bookmark-link" href="${item.url}" target="_blank">
         </div>
         <form id="js-delete-bookmark">
-          <button class="visit-site-button js-visit-site-button" aria-label="click to visit ${item.title} website">VISIT</button></a>
+          <button class="visit-site-button js-visit-site-button" aria-label="click to visit ${item.title} website">VISIT WEBSITE</button></a>
           <button class="delete-bookmark-button js-delete-bookmark-button" type="submit" aria-label="click to delete ${item.title} website">DELETE</button></br>
           <button class="close-button js-close-button" type="submit" aria-label="click to close ${item.title} expanded view">CLOSE DETAIL VIEW</button>
         </form>
       </li>`;
   }
 
-  // TODO: Be able to sort by rating
   function handleFilterByRatingClicked() {
     $('body').on('click', '.js-header-select', event => {
       event.preventDefault();
@@ -125,7 +125,7 @@ const bookmarkList = (function() {
     }
 
     //get current items
-    let items = store.bookmarks;
+    let items = store.getFilteredBrockmarks();
 
     // create element string
     const bookmarkString = generateBookmarkString(items);

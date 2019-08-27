@@ -5,6 +5,7 @@
 
 const store = (function() {
   let adding = false;
+  let minimumRating = 0;
 
   const bookmarks = [];
 
@@ -29,9 +30,13 @@ const store = (function() {
     return Object.assign(findId, newData);
   };
 
-  function filterByRating(val) {
-    this.bookmarks = this.bookmarks.filter( bookmark => {
-      return bookmark.rating >= val;
+  function filterByRating(val)  {
+    this.minimumRating = val;
+  }
+
+  function getFilteredBrockmarks() {
+    return this.bookmarks.filter( bookmark => {
+      return bookmark.rating >= this.minimumRating;
     });
   }
 
@@ -43,6 +48,8 @@ const store = (function() {
     findById,
     findAndDelete,
     findAndUpdate,
-    filterByRating
+    filterByRating,
+    getFilteredBrockmarks,
+    minimumRating
   };
 })();
