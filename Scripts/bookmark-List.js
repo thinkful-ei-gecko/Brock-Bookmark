@@ -10,7 +10,7 @@ const bookmarkList = (function() {
         <h3 class="list-title js-list-title">${item.title}</h3>
         <a class="list-link js-list-link" href="${item.url}" target="_blank">${item.url}</a>
         <section class="star-rating js-star-rating">
-          <p class="star-number js-star-number" aria-label="${item.rating} star">${item.rating} STARS</p>
+          <p class="star-number js-star-number" aria-label="${item.rating} star">Rating: ${item.rating} STARS</p>
         </section>
         <section class="buttons">
         <button class="delete-buttton-clicked" data-item-id="${item.id}" type="submit">Delete Brockmark</button>
@@ -32,11 +32,11 @@ const bookmarkList = (function() {
               <label for="add-bookmark-link"></label>
               <input class="add-bookmark add-bookmark-link js-add-bookmark-link" id="add-bookmark-link" name="url" type="url" aria-label="please enter a url for your bookmark"value="http://" placeholder="http://url-address.com" required>
               <label for="add-bookmark-desc"></label>
-              <input class="add-bookmark add-bookmark-desc js-add-bookmark-desc" id="add-bookmark-desc" name="desc" type="text" placeholder="Add long description here" aria-label="please enter a long description for your bookmark"align="top">
+              <input class="add-bookmark add-bookmark-desc js-add-bookmark-desc" id="add-bookmark-desc" name="desc" type="text" placeholder="Add a description" aria-label="please enter a long description for your bookmark"align="top">
               <div id="add-star-rating js-add-star-rating">
                 <div class="add-bookmark rate-radio-button js-rate-radio-buttons" aria-label="please select rating for new bookmark">
-                  <fieldset>
-                    <Legend required>STARS</Legend>
+                  <fieldset class="stars-fieldest">
+                    <Legend required>RATE THIS BROCKMARK</Legend>
                     <label aria-label="select rating 5 star"for="5-stars">5</label>
                     <input type="radio" id="5-stars"
                       name="rate" value="5" required>
@@ -67,16 +67,16 @@ const bookmarkList = (function() {
         <h2>${item.title}</h2>
         <form id="js-close-expanded" class="header-right js-header-right">
         <p class="expanded-stars js-expanded-stars">${item.rating} STAR</p>
-          <button class="close-button js-close-button" type="submit" aria-label="click to close ${item.title} expanded view">Close</button>
         </form>
         <p class="long-desc js-long-desc">${item.desc}</p>
         <a class="bookmark-link js-bookmark-link" href="${item.url}" target="_blank">${item.url}</a>
         <div> 
             <a class="bookmark-link js-bookmark-link" href="${item.url}" target="_blank">
-            <button class="visit-site-button js-visit-site-button" aria-label="click to visit ${item.title} website">VISIT</button></a>
         </div>
         <form id="js-delete-bookmark">
-          <button class="delete-bookmark-button js-delete-bookmark-button" type="submit" aria-label="click to delete ${item.title} website">DELETE</button>
+          <button class="visit-site-button js-visit-site-button" aria-label="click to visit ${item.title} website">VISIT</button></a>
+          <button class="delete-bookmark-button js-delete-bookmark-button" type="submit" aria-label="click to delete ${item.title} website">DELETE</button></br>
+          <button class="close-button js-close-button" type="submit" aria-label="click to close ${item.title} expanded view">CLOSE DETAIL VIEW</button>
         </form>
       </li>`;
   }
@@ -90,11 +90,6 @@ const bookmarkList = (function() {
       render();
     });
   }
-
-
-  // TODO: be able edit an existing bookmark
-
-
 
   function handleExpandViewClicked() {
     $('body').on('click', '.expand-button-clicked', event => {
@@ -115,8 +110,6 @@ const bookmarkList = (function() {
       .closest('.js-bookmark-list-items')
       .data('item-id');
   }
-  
-
 
   function generateBookmarkString(bookmarkList) {
     const items = bookmarkList.map((item) => generateBookmarkItem(item));
@@ -139,7 +132,6 @@ const bookmarkList = (function() {
 
     //insert html into DOM
     $('.js-bookmark-list').append(bookmarkString);
-
   }
   
   // click to create a new bookmark
@@ -153,7 +145,6 @@ const bookmarkList = (function() {
 
   // to add a new bookmark
   function handleAddBookmarkClicked() {
-    // TODO: clicking add needs to add the item to the bookmark list.
     $('body').on('submit', '#js-add-bookmark', (function(event) {
       event.preventDefault();
       const title = event.currentTarget.title.value;

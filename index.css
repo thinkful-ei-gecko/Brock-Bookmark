@@ -35,13 +35,36 @@ h1 {
 li {
     list-style-type: none;
 }
-    
-.bookmark-list {
-    border: 2px solid white;
-    border-radius: 3px;
-    margin: 25px 50px;
-    padding: 20px;
+  
+.list-title {
+    border-top: 1px dashed #18ab29;
+    margin-top: 25px;
 }
+
+h3 {
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0 auto;
+}
+
+.bookmark-list {
+    border: 1px solid #18ab29;
+    border-radius: 3px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    width: 35%;
+}
+
+@media all and (max-width: 750px) {
+    .bookmark-list {
+        width: 75%;
+    }
+    .stars-fieldest {
+        width: 75%;
+    }
+}
+
 
 button {
 	-moz-box-shadow: 0px 10px 12px -9px #d2dbd0;
@@ -63,12 +86,37 @@ button {
 	text-shadow:0px 1px 0px #2f6627;
 }
 
+fieldset {
+    border:1px solid #18ab29;
+    margin: 10px 0;
+}
+
+.stars-fieldest {
+    border:1px solid #18ab29;
+    margin: 10px 0;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.header-select {
+    border: 1px solid #18ab29;
+    background-color: rgb(23, 38, 47);
+    color: white;
+}
+
 button:hover {
     background-color: black;
 }
 
-.header-button {
-    margin: 0 auto;
+#js-create-bookmark-form {
+    display: flex; 
+    justify-content: center;
+}
+
+#js-filter-bookmark-form {
+    display: flex; 
+    justify-content: center;
+    text-align: center;
 }
 
 

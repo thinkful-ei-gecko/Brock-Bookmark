@@ -15,10 +15,10 @@ As a user:
 I can add bookmarks to my bookmark list.
 Bookmarks contain:
 
-title
-url link
-description
-rating (1-5)
+* title
+* url link
+* description
+* rating (1-5)
 
 I can see a list of my bookmarks when I first open the app
 

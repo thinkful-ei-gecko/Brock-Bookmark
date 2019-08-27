@@ -5,8 +5,6 @@
 
 const store = (function() {
   let adding = false;
-  let editing = null;
-
 
   const bookmarks = [];
 
@@ -40,7 +38,6 @@ const store = (function() {
   return {
     bookmarks,
     adding,
-    editing,
     setError,
     addItem,
     findById,
