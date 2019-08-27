@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header role="banner" aria-live="polite">
-          <a href="index.html"><h1>My<br>Bookmarks</h1></a>
+          <a href="startPage.html"><h1>My Bookmarks</h1></a>
           <form id="js-create-bookmark-form">
             <button aria-label="click to create a bookmark" class="header-button js-header-button" type="submit" ><a href="addItem.html">CREATE A BOOKMARK</a></button>
           </form>
@@ -32,27 +32,61 @@
         <main role="main" class="bookmark-panel js-bookmark-panel">
           <ul class="test-case" aria-live="polite">
             <li>
-                  <h3>Bookmark one</h3>
-                  <a href="google.com">Visit URL</a> 
-                  <section> 5 Stars <a href="editItem.html">Edit Bookmark</a></section>
+                <h3>Kotaku</h3>
+                <section>Title: Kotaku: A Gamers Review
+                </section>
+                <section>Rating:  5 Stars
+                    <button>See Details</button>
+                </section>
+                <section class="expanded">
+                    <ul>
+                        <h3>Detailed View</h3>
+                        <li>Title: Video Games</li>
+                        <li>URL: <a href="kotaku.com">Kotaku</a></li>
+                        <li>Description: A site that authors use to review and tell info about video games</li>
+                        <li>Rating: 4 stars</li>
+                    </ul>
+                    <button>Delete Bookmark</button>
+                </section>
             </li>
             <li>
-                <h3>Bookmark two</h3>
-                <a href="google.com">Visit URL</a> 
-                <section> 5 Stars <a href="editItem.html">Edit Bookmark</a></section>
+                <h3>CrunchyRoll</h3>
+                <section>Title: CrunchyRoll: A site for Anime Streaming
+                </section>
+                <section>Rating: 3 Stars
+                    <button>See Details</button>
+                </section>
             </li>
             <li>
-                <h3>Bookmark three</h3>
-                <a href="google.com">Visit URL</a> 
-                <section> 5 Stars <a href="editItem.html">Edit Bookmark</a></section>
+                <h3>Google</h3>
+                <section>Title: Google: A Search Engine
+                </section>
+                <section>Rating: 5 Stars
+                    <button>See Details</button>
+                </section>
             </li>
-            <li>
-                <h3>Bookmark four</h3>
-                <a href="google.com">Visit URL</a> 
-                <section> 5 Stars <a href="editItem.html">Edit Bookmark</a></section>
-            </li>
-              
           </ul>
+          <code>
+            const store = {
+                items: [
+                    { 
+                    title: Video Games,
+                    urlLink: 'kotaku.com',
+                    description: 'A site that authors reviews and other info for video games',
+                    rating: '4 stars',
+                    expanded: false 
+                    },
+                    { 
+                    title: Anime,
+                    urlLink: 'crunchyroll.com',
+                    description: 'A site that allows user to stream anime',
+                    rating: '5 stars',
+                    expanded: false 
+                    },
+                ],
+                adding: false,
+            };
+          </code>
         </main>
       </div>
 </body>
