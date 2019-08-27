@@ -10,9 +10,12 @@ const bookmarkList = (function() {
         <h3 class="list-title js-list-title">${item.title}</h3>
         <a class="list-link js-list-link" href="${item.url}" target="_blank">${item.url}</a>
         <section class="star-rating js-star-rating">
-          <p class="star-number js-star-number" aria-label="${item.rating} star">${item.rating} STAR</p>
+          <p class="star-number js-star-number" aria-label="${item.rating} star">${item.rating} STARS</p>
         </section>
-        <button class="delete-buttton-clicked" data-item-id="${item.id}" type="submit">Delete</button>
+        <section class="buttons">
+        <button class="delete-buttton-clicked" data-item-id="${item.id}" type="submit">Delete Brockmark</button>
+        <button class="expand-button-clicked" data-item-id="${item.id}" type="submit">See Details</button>
+        </section>
       </li>`;   
   }
 
@@ -58,6 +61,62 @@ const bookmarkList = (function() {
             </form>
           </li>`;
   }
+  function generateExpandedView(item){
+    return `
+      <li aria-label="click to expand bookmark"class="expand-bookmark-view js-expand-bookmark-view" data-item-id="${item.id}">
+        <h2>${item.title}</h2>
+        <form id="js-close-expanded" class="header-right js-header-right">
+        <p class="expanded-stars js-expanded-stars">${item.rating} STAR</p>
+          <button class="close-button js-close-button" type="submit" aria-label="click to close ${item.title} expanded view">Close</button>
+        </form>
+        <p class="long-desc js-long-desc">${item.desc}</p>
+        <a class="bookmark-link js-bookmark-link" href="${item.url}" target="_blank">${item.url}</a>
+        <div> 
+            <a class="bookmark-link js-bookmark-link" href="${item.url}" target="_blank">
+            <button class="visit-site-button js-visit-site-button" aria-label="click to visit ${item.title} website">VISIT</button></a>
+        </div>
+        <form id="js-delete-bookmark">
+          <button class="delete-bookmark-button js-delete-bookmark-button" type="submit" aria-label="click to delete ${item.title} website">DELETE</button>
+        </form>
+      </li>`;
+  }
+
+  // TODO: Be able to sort by rating
+  function handleFilterByRatingClicked() {
+    $('body').on('click', '.js-header-select', event => {
+      event.preventDefault();
+      const val = $(event.currentTarget).val();
+      store.filterByRating(val);
+      render();
+    });
+  }
+
+
+  // TODO: be able edit an existing bookmark
+
+
+
+  function handleExpandViewClicked() {
+    $('body').on('click', '.expand-button-clicked', event => {
+      const id = getItemIdFromElement(event.currentTarget);
+      let item = store.findById(id);
+      $(event.currentTarget).remove();
+      if(item.id === id) {
+        const expandView = generateExpandedView(item);
+        $('.js-bookmark-list').prepend(expandView);
+        store.expanded = true;
+        $('.bookmark-list-items').addClass('hidden');
+      }
+    });
+  }
+
+  function getItemIdFromElement(item) {
+    return $(item)
+      .closest('.js-bookmark-list-items')
+      .data('item-id');
+  }
+  
+
 
   function generateBookmarkString(bookmarkList) {
     const items = bookmarkList.map((item) => generateBookmarkItem(item));
@@ -120,7 +179,6 @@ const bookmarkList = (function() {
           store.findAndDelete(id);
           render();
         });
-  
     });
   }
 
@@ -130,6 +188,8 @@ const bookmarkList = (function() {
     handleCreateBookmarkClicked();
     handleAddBookmarkClicked();
     deleteBookmarkClicked();
+    handleExpandViewClicked();
+    handleFilterByRatingClicked();
   }
   return {
     bindEventListeners,

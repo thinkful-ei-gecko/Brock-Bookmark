@@ -31,6 +31,12 @@ const store = (function() {
     return Object.assign(findId, newData);
   };
 
+  function filterByRating(val) {
+    this.bookmarks = this.bookmarks.filter( bookmark => {
+      return bookmark.rating >= val;
+    });
+  }
+
   return {
     bookmarks,
     adding,
@@ -39,6 +45,7 @@ const store = (function() {
     addItem,
     findById,
     findAndDelete,
-    findAndUpdate
+    findAndUpdate,
+    filterByRating
   };
 })();

@@ -8,7 +8,7 @@ const api = (function() {
 
   const getBookmarks = function() {
     return fetch(BASE_URL + '/bookmarks')
-    .then(res => res.json()); 
+      .then(res => res.json()); 
   };
 
   const createItem = function(title, url, desc, rating, callback, onError) {
@@ -30,6 +30,15 @@ const api = (function() {
     });
   };
 
+  const updateItem = function(id, updateData, callback) {
+    return fetch(`${BASE_URL}/bookmarks/${id} `,{
+      method: 'PATCH',
+      contentType: 'application/json',
+      data: JSON.stringify(updateData),
+      success: callback
+    });
+  };
+
   const deleteItem = function(id) {
     return fetch(`${BASE_URL}/bookmarks/${id} `, {
       method: 'DELETE'
@@ -39,7 +48,8 @@ const api = (function() {
   return {
     getBookmarks,
     createItem,
-    deleteItem
+    deleteItem,
+    updateItem
   };
 
 })();
