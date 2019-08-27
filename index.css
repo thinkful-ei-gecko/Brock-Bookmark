@@ -10,18 +10,22 @@ body {
 
 a:link {
     color: pink;
+    text-decoration: none; 
 }
 
 .url-bookmark {
     color: pink;
+    text-decoration: none; 
 }
 
 a:visited {
     color: rgb(104, 128, 48);
+    text-decoration: none; 
 }
 
 a:hover {
     color: rgb(101, 194, 191);
+    text-decoration: none; 
 }
 
 a:active {
@@ -34,6 +38,7 @@ a:active {
 
 h1 {
     text-align: center;
+    text-decoration: none; 
 }
 
 li {
@@ -102,6 +107,9 @@ fieldset {
 
 input {
     margin: 5px;
+    border:1px solid #18ab29;
+    border-radius: 3px;
+    padding: 2px;
 }
 
 .stars-fieldest {
