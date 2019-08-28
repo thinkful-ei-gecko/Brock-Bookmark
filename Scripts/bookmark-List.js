@@ -76,7 +76,6 @@ const bookmarkList = (function() {
         </div>
         <form id="js-delete-bookmark">
           <button class="visit-site-button js-visit-site-button" aria-label="click to visit ${item.title} website">VISIT WEBSITE</button></a>
-          <button class="delete-bookmark-button js-delete-bookmark-button" type="submit" aria-label="click to delete ${item.title} website">DELETE</button></br>
           <button class="close-button js-close-button" type="submit" aria-label="click to close ${item.title} expanded view">CLOSE DETAIL VIEW</button>
         </form>
       </li>`;
