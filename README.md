@@ -1,6 +1,6 @@
 # Brock-Bookmark 
 
-Quiz app project completed as a single solo project by Brock Boutwell and [EI34]
+Bookmark app project completed as a single solo project by Brock Boutwell and [EI34]
 
 ## Technologies
 
